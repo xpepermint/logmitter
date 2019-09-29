@@ -5,12 +5,12 @@ node_js:
   - 11
 script:
   # use latest npm
-  # - npm install -g npm
+  - npm install -g npm
   # install required global npm packages
-  # - npm install -g events
   - npm install -g codecov
   # testing
   - npm i
+  - npm i events # travis bug
   - npm test
 after_success:
   # code coverage & codecov upload
