@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/xpepermint/logmitter.svg?branch=master)](https://travis-ci.org/xpepermint/logmitter)&nbsp;[![codecov](https://codecov.io/gh/xpepermint/logmitter/branch/master/graph/badge.svg)](https://codecov.io/gh/xpepermint/logmitter)
+[![Build Status](https://travis-ci.org/xpepermint/logmitter.svg?branch=master)](https://travis-ci.org/xpepermint/logmitter)&nbsp;[![codecov](https://codecov.io/gh/xpepermint/logmitter/branch/master/graph/badge.svg)](https://codecov.io/gh/xpepermint/logmitter)&nbsp;[![NPM Version](https://badge.fury.io/js/logmitter.svg)](https://badge.fury.io/js/logmitter)
 
 Logmitter is a universal logging utility which acts as event emitter. It's a lightweight open-source package for the **server** and **browser** (using module bundler), written with [TypeScript](https://www.typescriptlang.org). It's actively maintained, well tested and already used in production environments. The source code is available on [GitHub](https://github.com/xpepermint/logmitter) where you can also find our [issue tracker](https://github.com/xpepermint/logmitter/issues).
 
