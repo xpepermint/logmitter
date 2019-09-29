@@ -3,16 +3,13 @@ language: node_js
 node_js:
   - 12
   - 11
-script:
-  # use latest npm
-  - npm install -g npm
-  # install required global npm packages
+before_install:
+  - npm i -g npm@6.10.2
+before_script:
   - npm install -g codecov
-  # testing
   - npm i
-  - npm i events # travis bug
+script:
   - npm test
 after_success:
-  # code coverage & codecov upload
   - npx nyc report --extension=.ts --reporter=text-lcov > .nyc_output/coverage.lcov
   - codecov
