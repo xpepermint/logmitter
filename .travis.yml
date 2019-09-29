@@ -4,9 +4,10 @@ node_js:
   - 12
   - 11
 script:
-  # use latest npm to work on node9
+  # use latest npm
   - npm install -g npm
   # install required global npm packages
+  - npm install -g events
   - npm install -g codecov
   # testing
   - npm i
