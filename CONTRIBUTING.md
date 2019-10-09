@@ -14,7 +14,7 @@ Please follow the [TypeScript coding guidelines](https://github.com/Microsoft/Ty
 
 ## Release process
 
-Update package version, install dependencies, then make sure all tests are passing.
+Update package `version`, install dependencies, then make sure all tests are passing.
 
 ```
 $ npm i
@@ -24,7 +24,7 @@ $ npm test
 Build and publish the package.
 
 ```
-$ npm build
+$ npm run build
 $ npm publish
 ```
 

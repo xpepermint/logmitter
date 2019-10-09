@@ -1,5 +1,5 @@
 import { EventEmitter } from 'events';
-import { LogEvent, LogData } from './types';
+import { LogEvent } from './types';
 import { LoggerChild } from './child';
 
 /**
@@ -44,7 +44,7 @@ export class Logger<Message = string> {
    * @param event Event name.
    * @param resolver Event resolver function.
    */
-  public on(event: LogEvent, resolver: (data: LogData) => any): this {
+  public on(event: LogEvent, resolver: (message: Message, namespace: string) => any): this {
     this._emitter.on(event, resolver);
     return this;
   }
@@ -55,7 +55,7 @@ export class Logger<Message = string> {
    * @param event Event name.
    * @param resolver Event resolver function.
    */
-  public once(event: LogEvent, resolver: (data: LogData) => any): this {
+  public once(event: LogEvent, resolver: (message: Message, namespace: string) => any): this {
     this._emitter.once(event, resolver);
     return this;
   }
@@ -65,7 +65,7 @@ export class Logger<Message = string> {
    * @param event Event name.
    * @param resolver Event resolver function.
    */
-  public off(event: LogEvent, resolver?: (data: LogData) => any): this {
+  public off(event: LogEvent, resolver?: (message: Message, namespace: string) => any): this {
     if (resolver) {
       this._emitter.off(event, resolver);
     } else {

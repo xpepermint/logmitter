@@ -7,13 +7,3 @@ export enum LogEvent {
   INFO = 'info',
   DEBUG = 'debug',
 }
-
-/**
- * Log event data interface.
- */
-export interface LogData {
-  code: number;
-  data: any;
-  event: LogEvent;
-  namespace: string;
-}
