@@ -13,13 +13,13 @@ spec.test('triggers warning event', async (ctx) => {
   const parent = ctx.get('logger');
   const child = parent.child('child');
 
-  const messages = [];
-  parent.on(LogEvent.WARN, (message) => messages.push(message));
+  const result = [];
+  parent.on(LogEvent.WARN, (d) => result.push(d));
   child.warn('msg');
   child.warn('msg');
 
-  ctx.true(messages.length === 2);
-  ctx.deepEqual(messages[0], 'msg');
+  ctx.true(result.length === 2);
+  ctx.deepEqual(result[0].message, 'msg');
 });
 
 export default spec;

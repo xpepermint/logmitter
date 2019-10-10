@@ -13,13 +13,13 @@ spec.test('triggers error event', async (ctx) => {
   const parent = ctx.get('logger');
   const child = parent.child('child');
 
-  const messages = [];
-  parent.on(LogEvent.ERROR, (message) => messages.push(message));
+  const result = [];
+  parent.on(LogEvent.ERROR, (d) => result.push(d));
   child.error('msg');
   child.error('msg');
 
-  ctx.true(messages.length === 2);
-  ctx.deepEqual(messages[0], 'msg');
+  ctx.true(result.length === 2);
+  ctx.deepEqual(result[0].message, 'msg');
 });
 
 export default spec;

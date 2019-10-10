@@ -17,16 +17,16 @@ spec.test('supports namespace', async (ctx) => {
 spec.test('supports custom message interface', async (ctx) => {
   const logger = new Logger<{ code: number }>();
 
-  const messages = [];
-  logger.on(LogEvent.DEBUG, (message) => messages.push(message));
+  const result = [];
+  logger.on(LogEvent.DEBUG, (d) => result.push(d));
   logger.error({ code: 100 });
   logger.warn({ code: 100 });
   logger.info({ code: 100 });
   logger.debug({ code: 100 });
   logger.emit(LogEvent.DEBUG, { code: 100 });
 
-  ctx.is(messages.length, 2);
-  ctx.deepEqual(messages[0], { code: 100 });
+  ctx.is(result.length, 2);
+  ctx.deepEqual(result[0].message, { code: 100 });
 });
 
 export default spec;

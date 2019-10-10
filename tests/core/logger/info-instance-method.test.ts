@@ -12,12 +12,12 @@ spec.beforeEach((ctx) => {
 spec.test('triggers info event', async (ctx) => {
   const logger = ctx.get('logger');
 
-  const messages = [];
-  logger.on(LogEvent.INFO, (message) => messages.push(message));
+  const result = [];
+  logger.on(LogEvent.INFO, (d) => result.push(d));
   logger.info('msg');
   logger.info('msg');
 
-  ctx.true(messages.length === 2);
+  ctx.true(result.length === 2);
 });
 
 export default spec;

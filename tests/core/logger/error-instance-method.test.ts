@@ -12,12 +12,12 @@ spec.beforeEach((ctx) => {
 spec.test('triggers error event', async (ctx) => {
   const logger = ctx.get('logger');
 
-  const messages = [];
-  logger.on(LogEvent.ERROR, (message) => messages.push(message));
+  const result = [];
+  logger.on(LogEvent.ERROR, (d) => result.push(d));
   logger.error('msg');
   logger.error('msg');
 
-  ctx.true(messages.length === 2);
+  ctx.true(result.length === 2);
 });
 
 export default spec;

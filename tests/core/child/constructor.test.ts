@@ -16,15 +16,15 @@ spec.test('supports custom message interface', async (ctx) => {
   const parent = new Logger<{ code: number }>();
   const child = parent.child('foo');
 
-  const messages = [];
-  parent.on(LogEvent.DEBUG, (message) => messages.push(message));
+  const result = [];
+  parent.on(LogEvent.DEBUG, (d) => result.push(d));
   child.error({ code: 100 });
   child.warn({ code: 100 });
   child.info({ code: 100 });
   child.debug({ code: 100 });
 
-  ctx.is(messages.length, 1);
-  ctx.deepEqual(messages[0], { code: 100 });
+  ctx.is(result.length, 1);
+  ctx.deepEqual(result[0].message, { code: 100 });
 });
 
 export default spec;

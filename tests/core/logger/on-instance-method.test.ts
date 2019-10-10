@@ -12,53 +12,57 @@ spec.beforeEach((ctx) => {
 spec.test('handles error event', async (ctx) => {
   const logger = ctx.get('logger');
 
-  const data = [];
-  logger.on(LogEvent.ERROR, (message, namespace) => data.push({ message, namespace }));
+  const result = [];
+  logger.on(LogEvent.ERROR, (d) => result.push(d));
   logger.emit(LogEvent.ERROR, 'msg');
   logger.emit(LogEvent.ERROR, 'msg');
 
-  ctx.true(data.length === 2);
-  ctx.deepEqual(data[0].message, 'msg');
-  ctx.deepEqual(data[0].namespace, 'default');
+  ctx.true(result.length === 2);
+  ctx.deepEqual(result[0].event, LogEvent.ERROR);
+  ctx.deepEqual(result[0].message, 'msg');
+  ctx.deepEqual(result[0].namespace, 'default');
 });
 
 spec.test('handles warning event', async (ctx) => {
   const logger = ctx.get('logger');
 
-  const data = [];
-  logger.on(LogEvent.WARN, (message, namespace) => data.push({ message, namespace }));
+  const result = [];
+  logger.on(LogEvent.WARN, (d) => result.push(d));
   logger.emit(LogEvent.WARN, 'msg');
   logger.emit(LogEvent.WARN, 'msg');
 
-  ctx.true(data.length === 2);
-  ctx.deepEqual(data[0].message, 'msg');
-  ctx.deepEqual(data[0].namespace, 'default');
+  ctx.true(result.length === 2);
+  ctx.deepEqual(result[0].event, LogEvent.WARN);
+  ctx.deepEqual(result[0].message, 'msg');
+  ctx.deepEqual(result[0].namespace, 'default');
 });
 
 spec.test('handles info event', async (ctx) => {
   const logger = ctx.get('logger');
 
-  const data = [];
-  logger.on(LogEvent.INFO, (message, namespace) => data.push({ message, namespace }));
+  const result = [];
+  logger.on(LogEvent.INFO, (d) => result.push(d));
   logger.emit(LogEvent.INFO, 'msg');
   logger.emit(LogEvent.INFO, 'msg');
 
-  ctx.true(data.length === 2);
-  ctx.deepEqual(data[0].message, 'msg');
-  ctx.deepEqual(data[0].namespace, 'default');
+  ctx.true(result.length === 2);
+  ctx.deepEqual(result[0].event, LogEvent.INFO);
+  ctx.deepEqual(result[0].message, 'msg');
+  ctx.deepEqual(result[0].namespace, 'default');
 });
 
 spec.test('handles debug event', async (ctx) => {
   const logger = ctx.get('logger');
 
-  const data = [];
-  logger.on(LogEvent.DEBUG, (message, namespace) => data.push({ message, namespace }));
+  const result = [];
+  logger.on(LogEvent.DEBUG, (d) => result.push(d));
   logger.emit(LogEvent.DEBUG, 'msg');
   logger.emit(LogEvent.DEBUG, 'msg');
 
-  ctx.true(data.length === 2);
-  ctx.deepEqual(data[0].message, 'msg');
-  ctx.deepEqual(data[0].namespace, 'default');
+  ctx.true(result.length === 2);
+  ctx.deepEqual(result[0].event, LogEvent.DEBUG);
+  ctx.deepEqual(result[0].message, 'msg');
+  ctx.deepEqual(result[0].namespace, 'default');
 });
 
 export default spec;
