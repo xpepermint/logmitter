@@ -1,5 +1,5 @@
 import { EventEmitter } from 'events';
-import { LogEvent } from './types';
+import { LogEvent, LogResolver } from './types';
 import { LoggerChild } from './child';
 
 /**
@@ -33,7 +33,12 @@ export class Logger<Message = string> {
    */
   public emit(event: LogEvent, message: Message, namespace?: string): boolean {
     try {
-      return this._emitter.emit(event, message, namespace || this.namespace);
+      return this._emitter.emit(event, {
+        date: new Date(),
+        event,
+        message,
+        namespace: namespace || this.namespace,
+      });
     } catch (e) {
       return false;
     }
@@ -44,7 +49,7 @@ export class Logger<Message = string> {
    * @param event Event name.
    * @param resolver Event resolver function.
    */
-  public on(event: LogEvent, resolver: (message: Message, namespace: string) => any): this {
+  public on(event: LogEvent, resolver: LogResolver<Message>): this {
     this._emitter.on(event, resolver);
     return this;
   }
@@ -55,7 +60,7 @@ export class Logger<Message = string> {
    * @param event Event name.
    * @param resolver Event resolver function.
    */
-  public once(event: LogEvent, resolver: (message: Message, namespace: string) => any): this {
+  public once(event: LogEvent, resolver: LogResolver<Message>): this {
     this._emitter.once(event, resolver);
     return this;
   }
@@ -65,7 +70,7 @@ export class Logger<Message = string> {
    * @param event Event name.
    * @param resolver Event resolver function.
    */
-  public off(event: LogEvent, resolver?: (message: Message, namespace: string) => any): this {
+  public off(event: LogEvent, resolver?: LogResolver<Message>): this {
     if (resolver) {
       this._emitter.off(event, resolver);
     } else {
@@ -79,7 +84,7 @@ export class Logger<Message = string> {
    * @param message Event message.
    */
   public error(message: Message): boolean {
-    return this.emit(LogEvent.ERROR, message, this.namespace);
+    return this.emit(LogEvent.ERROR, message);
   }
 
   /**
@@ -87,7 +92,7 @@ export class Logger<Message = string> {
    * @param message Event message.
    */
   public warn(message: Message): boolean {
-    return this.emit(LogEvent.WARN, message, this.namespace);
+    return this.emit(LogEvent.WARN, message);
   }
 
   /**
@@ -95,7 +100,7 @@ export class Logger<Message = string> {
    * @param message Event message.
    */
   public info(message: Message): boolean {
-    return this.emit(LogEvent.INFO, message, this.namespace);
+    return this.emit(LogEvent.INFO, message);
   }
 
   /**
@@ -103,7 +108,7 @@ export class Logger<Message = string> {
    * @param message Event message.
    */
   public debug(message: Message): boolean {
-    return this.emit(LogEvent.DEBUG, message, this.namespace);
+    return this.emit(LogEvent.DEBUG, message);
   }
 
   /**
