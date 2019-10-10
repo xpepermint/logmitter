@@ -23,8 +23,8 @@ import { Logger, LogEvent } from 'logmitter';
 
 const logger = new Logger(namespace);
 
-logger.on(LogEvent.INFO, function(message, namespace) {
-  console.info(namespace, message);
+logger.on(LogEvent.INFO, function({ date, event, message, namespace }) {
+  console.info(message);
 });
 
 logger.info('Hello world!');
@@ -87,7 +87,7 @@ const userLogger = logger.child('user');
 |--------|------|----------|---------|------------
 | event | String | Yes | - | Event name.
 | message | Message | Yes | - | Event message.
-| event | String | Yes | - | Logger namespace.
+| namespace | String | No | this | Logger namespace.
 
 **Logger.prototype.error(message)**: Boolean
 

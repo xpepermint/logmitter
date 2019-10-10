@@ -1,6 +1,6 @@
 {
   "name": "logmitter",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Universal logging utility as event emitter.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
